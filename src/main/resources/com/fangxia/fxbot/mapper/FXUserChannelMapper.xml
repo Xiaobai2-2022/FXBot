@@ -15,4 +15,14 @@
             )
     </insert>
 
+    <update id="update" parameterType="com.fangxia.fxbot.dto.FXUserChannelDTO">
+        UPDATE fx_user_channels
+        SET display_name = #{channelDisplayName}
+        WHERE user_id = (
+            SELECT user_id
+            FROM fx_users
+            WHERE discord_id = #{discordId}
+        )
+    </update>
+
 </mapper>

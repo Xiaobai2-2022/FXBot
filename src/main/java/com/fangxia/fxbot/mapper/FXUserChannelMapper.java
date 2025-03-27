@@ -11,4 +11,6 @@ public interface FXUserChannelMapper extends BaseMapper<FXUserChannelEntity> {
 
     int insert(FXUserChannelDTO fxUserChannelDTO);
 
+    int update(FXUserChannelDTO fxUserChannelDTO);
+
 }

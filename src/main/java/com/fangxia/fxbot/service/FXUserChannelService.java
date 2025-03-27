@@ -16,4 +16,8 @@ public class FXUserChannelService {
         return fxUserChannelMapper.insert(fxUserChannelDTO);
     }
 
+    public int updateChannel(FXUserChannelDTO fxUserChannelDTO) {
+        return fxUserChannelMapper.update(fxUserChannelDTO);
+    }
+
 }

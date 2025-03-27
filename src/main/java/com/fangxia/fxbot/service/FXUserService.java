@@ -23,16 +23,16 @@ public class FXUserService {
         return fxUserMapper.selectList(null);
     }
 
-    public void createUser(FXUserEntity fxUserEntity) {
-        fxUserMapper.insert(fxUserEntity);
+    public int createUser(FXUserEntity fxUserEntity) {
+        return fxUserMapper.insert(fxUserEntity);
     }
 
-    public void updateUser(FXUserEntity fxUserEntity) {
-        fxUserMapper.updateById(fxUserEntity);
+    public int updateUser(FXUserEntity fxUserEntity) {
+        return fxUserMapper.updateById(fxUserEntity);
     }
 
-    public void deleteUser(Long userId) {
-        fxUserMapper.deleteById(userId);
+    public int deleteUser(Long userId) {
+        return fxUserMapper.deleteById(userId);
     }
 
 }

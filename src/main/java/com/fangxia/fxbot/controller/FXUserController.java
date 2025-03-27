@@ -48,8 +48,10 @@ public class FXUserController {
     ) {
         FXApiResponse<?> securityCheckDTO = securityKey.validate(serverKey);
         if(securityCheckDTO.isSuccess()) {
-            fxUserService.createUser(fxUserEntity);
-            return FXApiResponse.success(null);
+            if(fxUserService.createUser(fxUserEntity) > 0) {
+                return FXApiResponse.success(null);
+            }
+            return FXApiResponse.failure("Unable to create user.");
         }
         return securityCheckDTO;
     }
@@ -61,8 +63,10 @@ public class FXUserController {
     ) {
         FXApiResponse<?> securityCheckDTO = securityKey.validate(serverKey);
         if(securityCheckDTO.isSuccess()) {
-            fxUserService.updateUser(fxUserEntity);
-            return FXApiResponse.success(null);
+            if(fxUserService.updateUser(fxUserEntity) > 0) {
+                return FXApiResponse.success(null);
+            }
+            return FXApiResponse.failure("Unable to update user");
         }
         return securityCheckDTO;
     }
@@ -74,8 +78,10 @@ public class FXUserController {
     ) {
         FXApiResponse<?> securityCheckDTO = securityKey.validate(serverKey);
         if(securityCheckDTO.isSuccess()) {
-            fxUserService.deleteUser(id);
-            return FXApiResponse.success(null);
+            if(fxUserService.deleteUser(id) > 0) {
+                return FXApiResponse.success(null);
+            }
+            return FXApiResponse.failure("Unable to delete user with id " + id + ".");
         }
         return securityCheckDTO;
     }

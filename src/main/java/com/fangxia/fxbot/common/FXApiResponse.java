@@ -42,6 +42,15 @@ public class FXApiResponse<T> {
             .build();
     }
 
+    public static <T> FXApiResponse<T> failure(String msg) {
+        return FXApiResponse
+                .<T>builder()
+                .data(null)
+                .msg(msg)
+                .code(ERROR_RESPONSE)
+                .build();
+    }
+
     public static <T> FXApiResponse<T> failure(T data) {
         return FXApiResponse
                 .<T>builder()

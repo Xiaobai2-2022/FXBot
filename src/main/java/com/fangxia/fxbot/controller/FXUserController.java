@@ -16,14 +16,14 @@ public class FXUserController {
 
     private final FXUserService fxUserService;
 
-    private final FXSecurityKey securityKey;
+    private final FXSecurityKey fxSecurityKey;
 
     @GetMapping("/get/{id}")
     public FXApiResponse<?> getUserById(
         @PathVariable Long id,
         @RequestHeader(required = false) String serverKey
         ) {
-        FXApiResponse<?> securityCheckDTO = securityKey.validate(serverKey);
+        FXApiResponse<?> securityCheckDTO = fxSecurityKey.validate(serverKey);
         if(securityCheckDTO.isSuccess()) {
             return FXApiResponse.success(fxUserService.getUserById(id));
         }
@@ -34,7 +34,7 @@ public class FXUserController {
     public FXApiResponse<?> getAllUsers(
         @RequestHeader(required = false) String serverKey
     ) {
-        FXApiResponse<?> securityCheckDTO = securityKey.validate(serverKey);
+        FXApiResponse<?> securityCheckDTO = fxSecurityKey.validate(serverKey);
         if(securityCheckDTO.isSuccess()) {
             return FXApiResponse.success(fxUserService.getAllUsers());
         }
@@ -46,7 +46,7 @@ public class FXUserController {
         @RequestBody FXUserEntity fxUserEntity,
         @RequestHeader(required = false) String serverKey
     ) {
-        FXApiResponse<?> securityCheckDTO = securityKey.validate(serverKey);
+        FXApiResponse<?> securityCheckDTO = fxSecurityKey.validate(serverKey);
         if(securityCheckDTO.isSuccess()) {
             if(fxUserService.createUser(fxUserEntity) > 0) {
                 return FXApiResponse.success(null);
@@ -61,7 +61,7 @@ public class FXUserController {
         @RequestBody FXUserEntity fxUserEntity,
         @RequestHeader(required = false) String serverKey
     ) {
-        FXApiResponse<?> securityCheckDTO = securityKey.validate(serverKey);
+        FXApiResponse<?> securityCheckDTO = fxSecurityKey.validate(serverKey);
         if(securityCheckDTO.isSuccess()) {
             if(fxUserService.updateUser(fxUserEntity) > 0) {
                 return FXApiResponse.success(null);
@@ -76,7 +76,7 @@ public class FXUserController {
         @PathVariable Long id,
         @RequestHeader(required = false) String serverKey
     ) {
-        FXApiResponse<?> securityCheckDTO = securityKey.validate(serverKey);
+        FXApiResponse<?> securityCheckDTO = fxSecurityKey.validate(serverKey);
         if(securityCheckDTO.isSuccess()) {
             if(fxUserService.deleteUser(id) > 0) {
                 return FXApiResponse.success(null);

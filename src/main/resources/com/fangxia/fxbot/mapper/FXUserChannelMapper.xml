@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fangxia.fxbot.mapper.FXUserChannelMapper">
+
+    <insert id="insert" parameterType="com.fangxia.fxbot.dto.FXUserChannelDTO">
+        INSERT INTO fx_user_channels (user_id, display_name)
+        SELECT user_id, #{channelDisplayName}
+        FROM fx_users
+        WHERE discord_id = #{discordId}
+            AND user_id NOT IN(
+                SELECT user_id FROM fx_user_channels
+            )
+    </insert>
+
+</mapper>

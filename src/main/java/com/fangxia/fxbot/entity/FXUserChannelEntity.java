@@ -10,19 +10,19 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-@TableName("fx_users")
-@Schema(description = "Represents a FXBot User")
-public class FXUserEntity {
+@TableName("fx_user_channels")
+@Schema(description = "Represents a FXBot Channel")
+public class FXUserChannelEntity {
 
     @Schema(description = "Primary Key - Auto-Generated")
-    @TableId(value = "user_id", type = IdType.AUTO)
+    @TableId(value = "channel_id", type = IdType.AUTO)
+    private Long channelId;
+
+    @Schema(description = "Associated User ID")
+    @TableField("user_id")
     private Long userId;
 
-    @Schema(description = "Discord Snowflake ID")
-    @TableField("discord_id")
-    private Long discordId;
-
-    @Schema(description = "User Display Name")
+    @Schema(description = "Channel Display Name")
     @TableField("display_name")
     private String displayName;
 
@@ -33,5 +33,5 @@ public class FXUserEntity {
     @Schema(description = "Timestamp at last update")
     @TableField("update_time")
     private LocalDateTime updateTime;
-    
+
 }

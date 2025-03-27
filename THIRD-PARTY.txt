@@ -1,0 +1,74 @@
+THIRD-PARTY LICENSES
+Generated on 2025-03-27
+
+This project includes open-source dependencies listed below. Each dependency is the property of its respective authors and is licensed under the terms shown.
+
+
+------------------------------------------------------------
+Library: spring-boot-starter-quartz
+Group: org.springframework.boot
+License: Apache License 2.0
+------------------------------------------------------------
+
+------------------------------------------------------------
+Library: spring-boot-starter-web
+Group: org.springframework.boot
+License: Apache License 2.0
+------------------------------------------------------------
+
+------------------------------------------------------------
+Library: spring-boot-starter-test
+Group: org.springframework.boot
+License: Apache License 2.0
+------------------------------------------------------------
+
+------------------------------------------------------------
+Library: springdoc-openapi-starter-webmvc-ui
+Group: org.springdoc
+License: Apache License 2.0
+------------------------------------------------------------
+
+------------------------------------------------------------
+Library: mybatis-plus-boot-starter
+Group: com.baomidou
+License: Apache License 2.0
+------------------------------------------------------------
+
+------------------------------------------------------------
+Library: mybatis-spring
+Group: org.mybatis
+License: Apache License 2.0
+------------------------------------------------------------
+
+------------------------------------------------------------
+Library: mybatis-plus-generator
+Group: com.baomidou
+License: Apache License 2.0
+------------------------------------------------------------
+
+------------------------------------------------------------
+Library: mysql-connector-j
+Group: com.mysql
+License: GNU General Public License, Version 2, with FOSS Exception
+------------------------------------------------------------
+
+------------------------------------------------------------
+Library: lombok
+Group: org.projectlombok
+License: MIT License
+------------------------------------------------------------
+
+------------------------------------------------------------
+Library: jasypt-spring-boot-starter
+Group: com.github.ulisesbocchio
+License: Apache License 2.0
+------------------------------------------------------------
+
+------------------------------------------------------------
+Library: spring-boot-starter-actuator
+Group: org.springframework.boot
+License: Apache License 2.0
+------------------------------------------------------------
+
+
+Please refer to the official websites or Maven Central repositories for full license texts of the above libraries.

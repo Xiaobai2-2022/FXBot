@@ -1,7 +1,6 @@
 package com.fangxia.fxbot.common;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

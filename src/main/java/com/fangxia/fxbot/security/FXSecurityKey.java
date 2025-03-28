@@ -1,8 +1,8 @@
 package com.fangxia.fxbot.security;
 
 import com.fangxia.fxbot.config.PrivateServerConfig;
-
 import com.fangxia.fxbot.common.FXApiResponse;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

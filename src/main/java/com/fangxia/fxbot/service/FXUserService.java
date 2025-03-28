@@ -15,8 +15,8 @@ public class FXUserService {
 
     private final FXUserMapper fxUserMapper;
 
-    public FXUserEntity getUserById(Long userId) {
-        return fxUserMapper.selectById(userId);
+    public FXUserEntity getUser(Long discordId) {
+        return fxUserMapper.selectUserByDiscordId(discordId);
     }
 
     public List<FXUserEntity> getAllUsers() {
@@ -31,8 +31,8 @@ public class FXUserService {
         return fxUserMapper.updateById(fxUserEntity);
     }
 
-    public int deleteUser(Long userId) {
-        return fxUserMapper.deleteById(userId);
+    public int deleteUser(Long discordId) {
+        return fxUserMapper.deleteByDiscordId(discordId);
     }
 
 }

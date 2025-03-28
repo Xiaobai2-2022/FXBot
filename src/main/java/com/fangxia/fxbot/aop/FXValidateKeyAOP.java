@@ -5,6 +5,7 @@ import com.fangxia.fxbot.common.FXApiResponse;
 import com.fangxia.fxbot.security.FXSecurityKey;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -23,6 +24,7 @@ public class FXValidateKeyAOP {
     @Around("@annotation(fxValidateKey)")
     public Object verifyServerKey(ProceedingJoinPoint joinPoint, FXValidateKey fxValidateKey) throws Throwable {
         ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+
         if (attrs == null) {
             return FXApiResponse.failure("No request context found.");
         }

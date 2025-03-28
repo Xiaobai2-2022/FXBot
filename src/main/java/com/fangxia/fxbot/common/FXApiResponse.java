@@ -1,6 +1,7 @@
 package com.fangxia.fxbot.common;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -74,4 +75,14 @@ public class FXApiResponse<T> {
         return SUCCESS_RESPONSE.equals(this.code);
     }
 
+    public int toHttpStatus() {
+
+        return switch (this.code) {
+            case ILLEGAL_ACCESS_RESPONSE -> HttpServletResponse.SC_FORBIDDEN;
+            case NOT_FOUND_RESPONSE -> HttpServletResponse.SC_NOT_FOUND;
+            case ERROR_RESPONSE -> HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+            default -> HttpServletResponse.SC_OK;
+        };
+
+    }
 }

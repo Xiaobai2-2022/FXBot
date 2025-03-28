@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fangxia.fxbot.mapper.FXUserMapper">
+
+    <select id="selectUserByDiscordId" parameterType="Long" resultType="com.fangxia.fxbot.entity.FXUserEntity">
+        SELECT * FROM fx_users
+        WHERE discord_id = #{discordId}
+    </select>
+
+    <delete id="deleteByDiscordId" parameterType="Long">
+        DELETE FROM fx_users
+        WHERE discord_id = #{discordId}
+    </delete>
+
+</mapper>

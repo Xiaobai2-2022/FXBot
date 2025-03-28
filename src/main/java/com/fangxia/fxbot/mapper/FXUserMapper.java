@@ -7,4 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface FXUserMapper extends BaseMapper<FXUserEntity> {
+
+    FXUserEntity selectUserByDiscordId(Long discordId);
+
+    int deleteByDiscordId(Long discordId);
+
 }

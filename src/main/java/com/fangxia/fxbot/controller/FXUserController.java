@@ -53,13 +53,13 @@ public class FXUserController {
         return FXApiResponse.failure("Unable to update user");
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{discordId}")
     @FXValidateKey
-    public FXApiResponse<?> deleteUser(@PathVariable Long id) {
-        if(fxUserService.deleteUser(id) > 0) {
+    public FXApiResponse<?> deleteUser(@PathVariable Long discordId) {
+        if(fxUserService.deleteUser(discordId) > 0) {
             return FXApiResponse.success(null);
         }
-        return FXApiResponse.failure("Unable to delete user with id " + id + ".");
+        return FXApiResponse.failure("Unable to delete user with discord id " + discordId + ".");
     }
 
 }

@@ -16,10 +16,10 @@ import lombok.experimental.Accessors;
 @Schema(description = "API Response from Server")
 public class FXApiResponse<T> {
 
-    public static final String SUCCESS_RESPONSE = "200";
-    public static final String ILLEGAL_ACCESS_RESPONSE = "403";
-    public static final String NOT_FOUND_RESPONSE = "404";
-    public static final String ERROR_RESPONSE = "500";
+    public static final int SUCCESS_RESPONSE = 200;
+    public static final int ILLEGAL_ACCESS_RESPONSE = 403;
+    public static final int NOT_FOUND_RESPONSE = 404;
+    public static final int ERROR_RESPONSE = 500;
 
     public static final String SUCCESS_MESSAGE = "Success";
     public static final String NOT_FOUND_MESSAGE = "Not Found";
@@ -32,7 +32,7 @@ public class FXApiResponse<T> {
     private String msg;
 
     @Schema(description = "Response Code")
-    private String code;
+    private int code;
 
     public static <T> FXApiResponse<T> success(T data) {
         return FXApiResponse
@@ -52,15 +52,6 @@ public class FXApiResponse<T> {
                 .build();
     }
 
-    public static <T> FXApiResponse<T> failure(T data) {
-        return FXApiResponse
-                .<T>builder()
-                .data(data)
-                .msg(ERROR_MESSAGE)
-                .code(ERROR_RESPONSE)
-                .build();
-    }
-
     public static <T> FXApiResponse<T> illegal(String msg) {
         return FXApiResponse
                 .<T>builder()
@@ -72,17 +63,10 @@ public class FXApiResponse<T> {
 
     @Schema(description = "Given if the Response is Successful - 200")
     public boolean isSuccess() {
-        return SUCCESS_RESPONSE.equals(this.code);
+        return SUCCESS_RESPONSE == this.code;
     }
 
     public int toHttpStatus() {
-
-        return switch (this.code) {
-            case ILLEGAL_ACCESS_RESPONSE -> HttpServletResponse.SC_FORBIDDEN;
-            case NOT_FOUND_RESPONSE -> HttpServletResponse.SC_NOT_FOUND;
-            case ERROR_RESPONSE -> HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
-            default -> HttpServletResponse.SC_OK;
-        };
-
+        return this.code;
     }
 }

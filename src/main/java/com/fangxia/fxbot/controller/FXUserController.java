@@ -30,29 +30,18 @@ public class FXUserController {
     }
 
     @GetMapping("/query")
-    public FXApiResponse<?> getAllUsers(
-        @RequestHeader(required = false) String serverKey
-    ) {
-        FXApiResponse<?> securityCheckDTO = fxSecurityKey.validate(serverKey);
-        if(securityCheckDTO.isSuccess()) {
-            return FXApiResponse.success(fxUserService.getAllUsers());
-        }
-        return securityCheckDTO;
+    @FXValidateKey
+    public FXApiResponse<?> getAllUsers() {
+        return FXApiResponse.success(fxUserService.getAllUsers());
     }
 
     @PostMapping("/create")
-    public FXApiResponse<?> createUser(
-        @RequestBody FXUserEntity fxUserEntity,
-        @RequestHeader(required = false) String serverKey
-    ) {
-        FXApiResponse<?> securityCheckDTO = fxSecurityKey.validate(serverKey);
-        if(securityCheckDTO.isSuccess()) {
-            if(fxUserService.createUser(fxUserEntity) > 0) {
-                return FXApiResponse.success(null);
-            }
-            return FXApiResponse.failure("Unable to create user.");
+    @FXValidateKey
+    public FXApiResponse<?> createUser(@RequestBody FXUserEntity fxUserEntity) {
+        if(fxUserService.createUser(fxUserEntity) > 0) {
+            return FXApiResponse.success(null);
         }
-        return securityCheckDTO;
+        return FXApiResponse.failure("Unable to create user.");
     }
 
     @PutMapping("/update")

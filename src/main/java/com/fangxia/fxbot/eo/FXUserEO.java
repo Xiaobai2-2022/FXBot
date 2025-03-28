@@ -1,4 +1,4 @@
-package com.fangxia.fxbot.entity;
+package com.fangxia.fxbot.eo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Data
 @TableName("fx_users")
 @Schema(description = "Represents a FXBot User")
-public class FXUserEntity {
+public class FXUserEO {
 
     @Schema(description = "Primary Key - Auto-Generated")
     @TableId(value = "user_id", type = IdType.AUTO)

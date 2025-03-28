@@ -3,7 +3,7 @@ package com.fangxia.fxbot.controller;
 import com.fangxia.fxbot.annotations.FXValidateKey;
 import com.fangxia.fxbot.common.FXApiResponse;
 import com.fangxia.fxbot.dto.FXUserChannelDTO;
-import com.fangxia.fxbot.entity.FXUserChannelEntity;
+import com.fangxia.fxbot.eo.FXUserChannelEO;
 import com.fangxia.fxbot.service.FXUserChannelService;
 
 import lombok.RequiredArgsConstructor ;
@@ -20,11 +20,11 @@ public class FXUserChannelController {
     @GetMapping("/get/{discordId}")
     @FXValidateKey
     public FXApiResponse<?> getChannelByDiscordId(@PathVariable Long discordId) {
-        FXUserChannelEntity fxUserChannelEntity = fxUserChannelService.getChannel(discordId);
-        if(fxUserChannelEntity == null) {
+        FXUserChannelEO fxUserChannelEO = fxUserChannelService.getChannel(discordId);
+        if(fxUserChannelEO == null) {
             return FXApiResponse.failure("Channel with discord id: " + discordId + " not found.");
         }
-        return FXApiResponse.success(fxUserChannelEntity);
+        return FXApiResponse.success(fxUserChannelEO);
     }
 
     @GetMapping("/query")

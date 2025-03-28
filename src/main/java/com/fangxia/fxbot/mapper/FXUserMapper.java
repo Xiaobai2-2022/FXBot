@@ -1,14 +1,14 @@
 package com.fangxia.fxbot.mapper;
 
-import com.fangxia.fxbot.entity.FXUserEntity;
+import com.fangxia.fxbot.eo.FXUserEO;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface FXUserMapper extends BaseMapper<FXUserEntity> {
+public interface FXUserMapper extends BaseMapper<FXUserEO> {
 
-    FXUserEntity selectUserByDiscordId(Long discordId);
+    FXUserEO selectUserByDiscordId(Long discordId);
 
     int deleteByDiscordId(Long discordId);
 

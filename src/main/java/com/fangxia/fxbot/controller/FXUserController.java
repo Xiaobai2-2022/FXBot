@@ -2,7 +2,7 @@ package com.fangxia.fxbot.controller;
 
 import com.fangxia.fxbot.annotations.FXValidateKey;
 import com.fangxia.fxbot.common.FXApiResponse;
-import com.fangxia.fxbot.entity.FXUserEntity;
+import com.fangxia.fxbot.eo.FXUserEO;
 import com.fangxia.fxbot.security.FXSecurityKey;
 import com.fangxia.fxbot.service.FXUserService;
 
@@ -22,11 +22,11 @@ public class FXUserController {
     @GetMapping("/get/{discordId}")
     @FXValidateKey
     public FXApiResponse<?> getUserByDiscordId(@PathVariable Long discordId) {
-        FXUserEntity fxUserEntity = fxUserService.getUser(discordId);
-        if(fxUserEntity == null) {
+        FXUserEO fxUserEO = fxUserService.getUser(discordId);
+        if(fxUserEO == null) {
             return FXApiResponse.failure("User with discord id: " + discordId + " not found.");
         }
-        return FXApiResponse.success(fxUserEntity);
+        return FXApiResponse.success(fxUserEO);
     }
 
     @GetMapping("/query")
@@ -37,8 +37,8 @@ public class FXUserController {
 
     @PostMapping("/create")
     @FXValidateKey
-    public FXApiResponse<?> createUser(@RequestBody FXUserEntity fxUserEntity) {
-        if(fxUserService.createUser(fxUserEntity) > 0) {
+    public FXApiResponse<?> createUser(@RequestBody FXUserEO fxUserEO) {
+        if(fxUserService.createUser(fxUserEO) > 0) {
             return FXApiResponse.success(null);
         }
         return FXApiResponse.failure("Unable to create user.");
@@ -46,8 +46,8 @@ public class FXUserController {
 
     @PutMapping("/update")
     @FXValidateKey
-    public FXApiResponse<?> updateUser(@RequestBody FXUserEntity fxUserEntity) {
-        if(fxUserService.updateUser(fxUserEntity) > 0) {
+    public FXApiResponse<?> updateUser(@RequestBody FXUserEO fxUserEO) {
+        if(fxUserService.updateUser(fxUserEO) > 0) {
             return FXApiResponse.success(null);
         }
         return FXApiResponse.failure("Unable to update user");

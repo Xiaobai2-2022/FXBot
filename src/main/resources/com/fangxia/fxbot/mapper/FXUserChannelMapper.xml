@@ -5,7 +5,7 @@
 
 <mapper namespace="com.fangxia.fxbot.mapper.FXUserChannelMapper">
 
-    <select id="selectByDiscordId" parameterType="Long" resultType="com.fangxia.fxbot.entity.FXUserChannelEntity">
+    <select id="selectByDiscordId" parameterType="Long" resultType="com.fangxia.fxbot.eo.FXUserChannelEO">
         SELECT * FROM fx_user_channels
         WHERE user_id = (
             SELECT user_id

@@ -1,7 +1,7 @@
 package com.fangxia.fxbot.service;
 
 import com.fangxia.fxbot.dto.FXUserChannelDTO;
-import com.fangxia.fxbot.entity.FXUserChannelEntity;
+import com.fangxia.fxbot.eo.FXUserChannelEO;
 import com.fangxia.fxbot.mapper.FXUserChannelMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -15,11 +15,11 @@ public class FXUserChannelService {
 
     private final FXUserChannelMapper fxUserChannelMapper;
 
-    public FXUserChannelEntity getChannel(Long discordId) {
+    public FXUserChannelEO getChannel(Long discordId) {
         return fxUserChannelMapper.selectByDiscordId(discordId);
     }
 
-    public List<FXUserChannelEntity> getAllChannels() {
+    public List<FXUserChannelEO> getAllChannels() {
         return fxUserChannelMapper.selectList(null);
     }
 

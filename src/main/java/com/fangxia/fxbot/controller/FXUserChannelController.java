@@ -3,6 +3,7 @@ package com.fangxia.fxbot.controller;
 import com.fangxia.fxbot.annotations.FXValidateKey;
 import com.fangxia.fxbot.common.FXApiResponse;
 import com.fangxia.fxbot.dto.FXUserChannelDTO;
+import com.fangxia.fxbot.entity.FXUserChannelEntity;
 import com.fangxia.fxbot.service.FXUserChannelService;
 
 import lombok.RequiredArgsConstructor ;
@@ -15,6 +16,22 @@ import org.springframework.web.bind.annotation.*;
 public class FXUserChannelController {
 
     private final FXUserChannelService fxUserChannelService;
+
+    @GetMapping("/get/{discordId}")
+    @FXValidateKey
+    public FXApiResponse<?> getChannelByDiscordId(@PathVariable Long discordId) {
+        FXUserChannelEntity fxUserChannelEntity = fxUserChannelService.getChannel(discordId);
+        if(fxUserChannelEntity == null) {
+            return FXApiResponse.failure("Channel with discord id: " + discordId + " not found.");
+        }
+        return FXApiResponse.success(fxUserChannelEntity);
+    }
+
+    @GetMapping("/query")
+    @FXValidateKey
+    public FXApiResponse<?> getAllChannels() {
+        return FXApiResponse.success(fxUserChannelService.getAllChannels());
+    }
 
     @PostMapping("/create")
     @FXValidateKey

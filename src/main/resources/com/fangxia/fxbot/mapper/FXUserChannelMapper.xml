@@ -5,6 +5,15 @@
 
 <mapper namespace="com.fangxia.fxbot.mapper.FXUserChannelMapper">
 
+    <select id="selectByDiscordId" parameterType="Long" resultType="com.fangxia.fxbot.entity.FXUserChannelEntity">
+        SELECT * FROM fx_user_channels
+        WHERE user_id = (
+            SELECT user_id
+            FROM fx_users
+            WHERE discord_id = #{discordId}
+        )
+    </select>
+
     <insert id="insert" parameterType="com.fangxia.fxbot.dto.FXUserChannelDTO">
         INSERT INTO fx_user_channels (user_id, display_name)
         SELECT user_id, #{channelDisplayName}

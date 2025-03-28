@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface FXUserChannelMapper extends BaseMapper<FXUserChannelEntity> {
 
+    FXUserChannelEntity selectByDiscordId(Long discordId);
+
     int insert(FXUserChannelDTO fxUserChannelDTO);
 
     int update(FXUserChannelDTO fxUserChannelDTO);

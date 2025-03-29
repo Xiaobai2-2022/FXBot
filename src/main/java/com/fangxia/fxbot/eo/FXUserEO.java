@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 public class FXUserEO {
 
     @Schema(description = "Primary Key - Auto-Generated")
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Long userId;
+    @TableId(value = "user_id", type = IdType.ASSIGN_UUID)
+    private String userId;
 
     @Schema(description = "Discord Snowflake ID")
     @TableField("discord_id")

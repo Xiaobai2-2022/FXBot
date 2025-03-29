@@ -28,7 +28,7 @@ public class FXUserService {
     }
 
     public int updateUser(FXUserEO fxUserEO) {
-        return fxUserMapper.updateById(fxUserEO);
+        return fxUserMapper.updateUserByDiscordId(fxUserEO);
     }
 
     public int deleteUser(Long discordId) {

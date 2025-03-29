@@ -10,6 +10,12 @@
         WHERE discord_id = #{discordId}
     </select>
 
+    <update id="updateUserByDiscordId" parameterType="com.fangxia.fxbot.eo.FXUserEO">
+        UPDATE fx_users
+        SET display_name = #{displayName}
+        WHERE discord_id = #{discordId}
+    </update>
+
     <delete id="deleteByDiscordId" parameterType="Long">
         DELETE FROM fx_users
         WHERE discord_id = #{discordId}

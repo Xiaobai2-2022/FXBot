@@ -10,6 +10,8 @@ public interface FXUserMapper extends BaseMapper<FXUserEO> {
 
     FXUserEO selectUserByDiscordId(Long discordId);
 
+    int updateUserByDiscordId(FXUserEO fxUserEO);
+
     int deleteByDiscordId(Long discordId);
 
 }

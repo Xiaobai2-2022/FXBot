@@ -5,7 +5,7 @@
 
 <mapper namespace="com.fangxia.fxbot.mapper.FXUserChannelMapper">
 
-    <select id="selectByDiscordId" parameterType="Long" resultType="com.fangxia.fxbot.eo.FXUserChannelEO">
+    <select id="selectChannelByDiscordId" parameterType="Long" resultType="com.fangxia.fxbot.eo.FXUserChannelEO">
         SELECT * FROM fx_user_channels
         WHERE user_id = (
             SELECT user_id
@@ -15,8 +15,8 @@
     </select>
 
     <insert id="insert" parameterType="com.fangxia.fxbot.dto.FXUserChannelDTO">
-        INSERT INTO fx_user_channels (user_id, display_name)
-        SELECT user_id, #{channelDisplayName}
+        INSERT INTO fx_user_channels (channel_id, user_id, display_name)
+        SELECT UUID(), user_id, #{channelDisplayName}
         FROM fx_users
         WHERE discord_id = #{discordId}
             AND user_id NOT IN(
@@ -33,5 +33,14 @@
             WHERE discord_id = #{discordId}
         )
     </update>
+
+    <delete id="delete" parameterType="Long">
+        DELETE FROM fx_user_channels
+        WHERE user_id = (
+            SELECT user_id
+            FROM fx_users
+            WHERE discord_id = #{discordId}
+        )
+    </delete>
 
 </mapper>

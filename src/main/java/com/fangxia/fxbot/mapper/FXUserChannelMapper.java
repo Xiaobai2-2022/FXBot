@@ -9,10 +9,12 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface FXUserChannelMapper extends BaseMapper<FXUserChannelEO> {
 
-    FXUserChannelEO selectByDiscordId(Long discordId);
+    FXUserChannelEO selectChannelByDiscordId(Long discordId);
 
     int insert(FXUserChannelDTO fxUserChannelDTO);
 
     int update(FXUserChannelDTO fxUserChannelDTO);
+
+    int delete(Long discordId);
 
 }

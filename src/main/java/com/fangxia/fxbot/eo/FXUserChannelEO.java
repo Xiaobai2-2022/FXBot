@@ -15,12 +15,12 @@ import java.time.LocalDateTime;
 public class FXUserChannelEO {
 
     @Schema(description = "Primary Key - Auto-Generated")
-    @TableId(value = "channel_id", type = IdType.AUTO)
-    private Long channelId;
+    @TableId(value = "channel_id", type = IdType.ASSIGN_UUID)
+    private String channelId;
 
     @Schema(description = "Associated User ID")
     @TableField("user_id")
-    private Long userId;
+    private String userId;
 
     @Schema(description = "Channel Display Name")
     @TableField("display_name")

@@ -16,7 +16,7 @@ public class FXUserChannelService {
     private final FXUserChannelMapper fxUserChannelMapper;
 
     public FXUserChannelEO getChannel(Long discordId) {
-        return fxUserChannelMapper.selectByDiscordId(discordId);
+        return fxUserChannelMapper.selectChannelByDiscordId(discordId);
     }
 
     public List<FXUserChannelEO> getAllChannels() {
@@ -29,6 +29,10 @@ public class FXUserChannelService {
 
     public int updateChannel(FXUserChannelDTO fxUserChannelDTO) {
         return fxUserChannelMapper.update(fxUserChannelDTO);
+    }
+
+    public int delete(Long discordId) {
+        return fxUserChannelMapper.delete(discordId);
     }
 
 }

@@ -22,7 +22,11 @@ public class FXUserChannelController {
     public FXApiResponse<?> getChannelByDiscordId(@PathVariable Long discordId) {
         FXUserChannelEO fxUserChannelEO = fxUserChannelService.getChannel(discordId);
         if(fxUserChannelEO == null) {
-            return FXApiResponse.failure("Channel with discord id: " + discordId + " not found.");
+            return FXApiResponse.failure(
+                "Channel with discord id: " +
+                discordId +
+                " not found."
+            );
         }
         return FXApiResponse.success(fxUserChannelEO);
     }
@@ -39,7 +43,11 @@ public class FXUserChannelController {
         if(fxUserChannelService.createChannel(fxUserChannelDTO) > 0) {
             return FXApiResponse.success(null);
         }
-        return FXApiResponse.failure("Unable to create channel.");
+        return FXApiResponse.failure(
+            "Can not create channel for: " +
+            fxUserChannelDTO.getDiscordId() +
+            ". User not registered or already in use."
+        );
     }
 
     @PutMapping("/update")
@@ -48,7 +56,24 @@ public class FXUserChannelController {
         if(fxUserChannelService.updateChannel(fxUserChannelDTO) > 0) {
             return FXApiResponse.success(null);
         }
-        return FXApiResponse.failure("Unable to create channel.");
+        return FXApiResponse.failure(
+            "Unable to find and update channel with discord id " +
+            fxUserChannelDTO.getDiscordId() +
+            "."
+        );
+    }
+
+    @DeleteMapping("/delete/{discordId}")
+    @FXValidateKey
+    public FXApiResponse<?> deleteChannel(@PathVariable Long discordId) {
+        if(fxUserChannelService.delete(discordId) > 0) {
+            return FXApiResponse.success(null);
+        }
+        return FXApiResponse.failure(
+            "Unable to find and delete channel with discord id " +
+            discordId +
+            "."
+        );
     }
 
 }

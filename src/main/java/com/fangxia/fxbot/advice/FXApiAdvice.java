@@ -1,5 +1,6 @@
-package com.fangxia.fxbot.common;
+package com.fangxia.fxbot.advice;
 
+import com.fangxia.fxbot.common.FXApiResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,7 @@ public class FXApiAdvice implements ResponseBodyAdvice<Object> {
             if(fxResponse.isSuccess()) {
                 return fxResponse.getData();
             }
-            return fxResponse;
+            return fxResponse.getMsg();
         }
 
         return body;

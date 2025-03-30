@@ -13,7 +13,7 @@ public interface FXUserChannelMapper extends BaseMapper<FXUserChannelEO> {
 
     int insert(FXUserChannelDTO fxUserChannelDTO);
 
-    int updateByDiscordId(FXUserChannelDTO fxUserChannelDTO);
+    int update(FXUserChannelDTO fxUserChannelDTO);
 
     int deleteByDiscordId(Long discordId);
 

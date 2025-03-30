@@ -28,7 +28,7 @@ public class FXUserChannelService {
     }
 
     public int updateChannel(FXUserChannelDTO fxUserChannelDTO) {
-        return fxUserChannelMapper.updateByDiscordId(fxUserChannelDTO);
+        return fxUserChannelMapper.update(fxUserChannelDTO);
     }
 
     public int delete(Long discordId) {

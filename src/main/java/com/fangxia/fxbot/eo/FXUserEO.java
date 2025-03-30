@@ -18,7 +18,7 @@ public class FXUserEO {
     @TableId(value = "user_id", type = IdType.ASSIGN_UUID)
     private String userId;
 
-    @Schema(description = "Discord Snowflake ID")
+    @Schema(description = "Discord User Snowflake ID")
     @TableField("discord_id")
     private Long discordId;
 

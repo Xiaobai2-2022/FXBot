@@ -23,16 +23,16 @@ public class FXUserService {
         return fxUserMapper.selectList(null);
     }
 
-    public int createUser(FXUserEO fxUserEO) {
-        return fxUserMapper.insert(fxUserEO);
+    public void createUser(FXUserEO fxUserEO) {
+        fxUserMapper.insert(fxUserEO);
     }
 
     public int updateUser(FXUserEO fxUserEO) {
-        return fxUserMapper.updateUserByDiscordId(fxUserEO);
+        return fxUserMapper.updateUser(fxUserEO);
     }
 
     public int deleteUser(Long discordId) {
-        return fxUserMapper.deleteByDiscordId(discordId);
+        return fxUserMapper.deleteUserByDiscordId(discordId);
     }
 
 }

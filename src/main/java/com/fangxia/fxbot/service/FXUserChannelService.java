@@ -28,11 +28,11 @@ public class FXUserChannelService {
     }
 
     public int updateChannel(FXUserChannelDTO fxUserChannelDTO) {
-        return fxUserChannelMapper.update(fxUserChannelDTO);
+        return fxUserChannelMapper.updateByDiscordId(fxUserChannelDTO);
     }
 
     public int delete(Long discordId) {
-        return fxUserChannelMapper.delete(discordId);
+        return fxUserChannelMapper.deleteByDiscordId(discordId);
     }
 
 }

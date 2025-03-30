@@ -10,21 +10,29 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-@TableName("fx_user_channels")
+@TableName("fx_channels")
 @Schema(description = "Represents a FXBot Channel")
-public class FXUserChannelEO {
+public class FXChannelEO {
 
     @Schema(description = "Primary Key - Auto-Generated")
     @TableId(value = "channel_id", type = IdType.ASSIGN_UUID)
     private String channelId;
 
+    @Schema(description = "Discord Channel Snowflake ID")
+    @TableField("discord_channel_id")
+    private Long discordChannelId;
+
     @Schema(description = "Associated User ID")
-    @TableField("user_id")
-    private String userId;
+    @TableField("owner_id")
+    private String ownerId;
 
     @Schema(description = "Channel Display Name")
     @TableField("display_name")
     private String displayName;
+
+    @Schema(description = "Channel Activation Status")
+    @TableField("is_active")
+    private Boolean isActive;
 
     @Schema(description = "Timestamp at creation")
     @TableField("create_time")

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fangxia.fxbot.mapper.FXChannelMapper">
+
+    <select id="selectChannelByDiscordId" parameterType="Long" resultType="com.fangxia.fxbot.eo.FXChannelEO">
+        SELECT * FROM fx_channels
+        WHERE owner_id = (
+            SELECT user_id
+            FROM fx_users
+            WHERE discord_id = #{discordUserId}
+        )
+    </select>
+
+    <insert id="insertChannel" parameterType="com.fangxia.fxbot.dto.FXUserChannelDTO">
+        INSERT INTO fx_channels (channel_id, discord_channel_id, owner_id, display_name, is_active)
+        SELECT UUID(), #{discordChannelId}, user_id, #{channelDisplayName}, true
+        FROM fx_users
+        WHERE discord_id = #{discordUserId}
+    </insert>
+
+    <update id="updateChannel" parameterType="com.fangxia.fxbot.dto.FXUserChannelDTO">
+        UPDATE fx_channels
+        SET display_name = #{channelDisplayName}
+        WHERE discord_channel_id = #{discordChannelId}
+            AND owner_id = (
+                SELECT user_id
+                FROM fx_users
+                WHERE discord_id = #{discordUserId}
+            )
+    </update>
+
+    <delete id="deleteChannel" parameterType="com.fangxia.fxbot.dto.FXUserChannelDTO">
+        DELETE FROM fx_channels
+        WHERE discord_channel_id = #{discordChannelId}
+            AND owner_id = (
+                SELECT user_id
+                FROM fx_users
+                WHERE discord_id = #{discordUserId}
+            )
+    </delete>
+
+</mapper>

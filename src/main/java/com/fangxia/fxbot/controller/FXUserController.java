@@ -18,8 +18,6 @@ public class FXUserController {
 
     private final FXUserService fxUserService;
 
-    private final FXSecurityKey fxSecurityKey;
-
     @GetMapping("/get/{discordId}")
     @Operation(summary = "Returns the user with the given discord id")
     @FXValidateKey

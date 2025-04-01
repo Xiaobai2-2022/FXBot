@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fangxia.fxbot.mapper.FXServerMapper">
+
+    <select id="selectServerByDiscordId" parameterType="Long" resultType="com.fangxia.fxbot.eo.FXServerEO">
+        SELECT * FROM fx_servers
+        WHERE owner_id = (
+            SELECT user_id
+            FROM fx_users
+            WHERE discord_id = #{discordUserId}
+        )
+    </select>
+
+    <insert id="insertServer" parameterType="com.fangxia.fxbot.dto.FXUserServerDTO">
+        INSERT INTO fx_servers (server_id, discord_server_id, owner_id, display_name)
+        SELECT UUID(), #{discordServerId}, user_id, #{serverDisplayName}
+        FROM fx_users
+        WHERE discord_id = #{discordUserId}
+    </insert>
+
+    <update id="updateServer" parameterType="com.fangxia.fxbot.dto.FXUserServerDTO">
+        UPDATE fx_servers
+        SET display_name = #{serverDisplayName}
+        WHERE discord_server_id = #{discordServerId}
+            AND owner_id = (
+                SELECT user_id
+                FROM fx_users
+                WHERE discord_id = #{discordUserId}
+            )
+    </update>
+
+    <delete id="deleteServer" parameterType="com.fangxia.fxbot.dto.FXUserServerDTO">
+        DELETE FROM fx_servers
+        WHERE discord_server_id = #{discordServerId}
+            AND owner_id = (
+                SELECT user_id
+                FROM fx_users
+                WHERE discord_id = #{discordUserId}
+            )
+    </delete>
+
+</mapper>

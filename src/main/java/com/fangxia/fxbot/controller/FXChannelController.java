@@ -6,6 +6,7 @@ import com.fangxia.fxbot.dto.FXUserChannelDTO;
 import com.fangxia.fxbot.eo.FXChannelEO;
 import com.fangxia.fxbot.service.FXChannelService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor ;
 
 import org.springframework.web.bind.annotation.*;
@@ -17,32 +18,35 @@ import java.util.List;
 @RequestMapping("/channel")
 public class FXChannelController {
 
-    private final FXChannelService fxUserChannelService;
+    private final FXChannelService fxChannelService;
 
     @GetMapping("/get/{discordId}")
+    @Operation(summary = "Returns all channels owned by the given discord id")
     @FXValidateKey
     public FXApiResponse<?> getChannelByDiscordId(@PathVariable Long discordId) {
-        List<FXChannelEO> fxUserChannelEOs = fxUserChannelService.getChannel(discordId);
-        if(fxUserChannelEOs == null || fxUserChannelEOs.isEmpty()) {
+        List<FXChannelEO> fxUserChannels = fxChannelService.getChannel(discordId);
+        if(fxUserChannels == null || fxUserChannels.isEmpty()) {
             return FXApiResponse.failure(
                 "Channel with discord id: " +
                 discordId +
                 " not found."
             );
         }
-        return FXApiResponse.success(fxUserChannelEOs);
+        return FXApiResponse.success(fxUserChannels);
     }
 
     @GetMapping("/query")
+    @Operation(summary = "Returns all channels")
     @FXValidateKey
     public FXApiResponse<?> getAllChannels() {
-        return FXApiResponse.success(fxUserChannelService.getAllChannels());
+        return FXApiResponse.success(fxChannelService.getAllChannels());
     }
 
     @PostMapping("/create")
+    @Operation(summary = "Create a new channel")
     @FXValidateKey
     public FXApiResponse<?> createChannel(@RequestBody FXUserChannelDTO fxUserChannelDTO) {
-        if(fxUserChannelService.createChannel(fxUserChannelDTO) > 0) {
+        if(fxChannelService.createChannel(fxUserChannelDTO) > 0) {
             return FXApiResponse.success(null);
         }
         return FXApiResponse.failure(
@@ -53,9 +57,10 @@ public class FXChannelController {
     }
 
     @PutMapping("/update")
+    @Operation(summary = "Update an existing channel")
     @FXValidateKey
     public FXApiResponse<?> updateChannel(@RequestBody FXUserChannelDTO fxUserChannelDTO) {
-        if(fxUserChannelService.updateChannel(fxUserChannelDTO) > 0) {
+        if(fxChannelService.updateChannel(fxUserChannelDTO) > 0) {
             return FXApiResponse.success(null);
         }
         return FXApiResponse.failure(
@@ -66,9 +71,10 @@ public class FXChannelController {
     }
 
     @DeleteMapping("/delete")
+    @Operation(summary = "Delete an existing channel")
     @FXValidateKey
     public FXApiResponse<?> deleteChannel(@RequestBody FXUserChannelDTO fxUserChannelDTO) {
-        if(fxUserChannelService.delete(fxUserChannelDTO) > 0) {
+        if(fxChannelService.deleteChannel(fxUserChannelDTO) > 0) {
             return FXApiResponse.success(null);
         }
         return FXApiResponse.failure(

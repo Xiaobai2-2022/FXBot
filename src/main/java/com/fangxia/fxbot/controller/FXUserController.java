@@ -6,6 +6,7 @@ import com.fangxia.fxbot.eo.FXUserEO;
 import com.fangxia.fxbot.security.FXSecurityKey;
 import com.fangxia.fxbot.service.FXUserService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor ;
 
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ public class FXUserController {
     private final FXSecurityKey fxSecurityKey;
 
     @GetMapping("/get/{discordId}")
+    @Operation(summary = "Returns the user with the given discord id")
     @FXValidateKey
     public FXApiResponse<?> getUserByDiscordId(@PathVariable Long discordId) {
         FXUserEO fxUserEO = fxUserService.getUser(discordId);
@@ -30,12 +32,14 @@ public class FXUserController {
     }
 
     @GetMapping("/query")
+    @Operation(summary = "Returns all users")
     @FXValidateKey
     public FXApiResponse<?> getAllUsers() {
         return FXApiResponse.success(fxUserService.getAllUsers());
     }
 
     @PostMapping("/create")
+    @Operation(summary = "Create a new user")
     @FXValidateKey
     public FXApiResponse<?> createUser(@RequestBody FXUserEO fxUserEO) {
         fxUserService.createUser(fxUserEO);
@@ -43,6 +47,7 @@ public class FXUserController {
     }
 
     @PutMapping("/update")
+    @Operation(summary = "Update an existing user")
     @FXValidateKey
     public FXApiResponse<?> updateUser(@RequestBody FXUserEO fxUserEO) {
         if(fxUserService.updateUser(fxUserEO) > 0) {
@@ -52,6 +57,7 @@ public class FXUserController {
     }
 
     @DeleteMapping("/delete/{discordId}")
+    @Operation(summary = "Delete an existing user")
     @FXValidateKey
     public FXApiResponse<?> deleteUser(@PathVariable Long discordId) {
         if(fxUserService.deleteUser(discordId) > 0) {

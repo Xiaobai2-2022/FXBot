@@ -6,7 +6,6 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.Locale;
 import java.util.Objects;
 
 @RestControllerAdvice
@@ -34,7 +33,6 @@ public class FXExceptionHandlerAdvice {
                 causeMsg,
                 () -> "A SQL Syntax Error has occurred:" +
                 ex.getMessage()));
-
     }
 
 }

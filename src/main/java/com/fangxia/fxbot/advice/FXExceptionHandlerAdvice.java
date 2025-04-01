@@ -6,6 +6,8 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.management.ReflectionException;
+import java.sql.SQLSyntaxErrorException;
 import java.util.Objects;
 
 @RestControllerAdvice
@@ -33,6 +35,16 @@ public class FXExceptionHandlerAdvice {
                 causeMsg,
                 () -> "A SQL Syntax Error has occurred:" +
                 ex.getMessage()));
+    }
+
+    @ExceptionHandler(SQLSyntaxErrorException.class)
+    public FXApiResponse<?> handleSQLSyntaxErrorException(SQLSyntaxErrorException ex) {
+        return FXApiResponse.failure(ex.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public FXApiResponse<?> handleAnyException(ReflectionException ex) {
+        return FXApiResponse.failure(ex.getMessage());
     }
 
 }

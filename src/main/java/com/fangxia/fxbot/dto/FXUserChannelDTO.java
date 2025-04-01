@@ -13,6 +13,9 @@ public class FXUserChannelDTO {
     @Schema(description = "Discord Channel Snowflake ID")
     private Long discordChannelId;
 
+    @Schema(description = "Discord Server Snowflake Id")
+    private Long discordServerId;
+
     @Schema(description = "Channel Display Name")
     private String channelDisplayName;
 

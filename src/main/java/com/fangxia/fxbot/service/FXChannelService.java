@@ -31,7 +31,7 @@ public class FXChannelService {
         return fxUserChannelMapper.updateChannel(fxUserChannelDTO);
     }
 
-    public int delete(FXUserChannelDTO fxUserChannelDTO) {
+    public int deleteChannel(FXUserChannelDTO fxUserChannelDTO) {
         return fxUserChannelMapper.deleteChannel(fxUserChannelDTO);
     }
 

@@ -26,6 +26,10 @@ public class FXChannelEO {
     @TableField("owner_id")
     private String ownerId;
 
+    @Schema(description = "Associated Server ID")
+    @TableField("server_id")
+    private String serverId;
+
     @Schema(description = "Channel Display Name")
     @TableField("display_name")
     private String displayName;

@@ -50,9 +50,11 @@ public class FXChannelController {
             return FXApiResponse.success(null);
         }
         return FXApiResponse.failure(
-            "Can not create channel for: " +
+            "Can not create channel for: user id" +
             fxUserChannelDTO.getDiscordUserId() +
-            ". User not registered."
+            ", server id " +
+            fxUserChannelDTO.getDiscordServerId() +
+            "."
         );
     }
 
@@ -64,7 +66,7 @@ public class FXChannelController {
             return FXApiResponse.success(null);
         }
         return FXApiResponse.failure(
-            "Unable to find and update channel with id " +
+            "Unable to update channel with id " +
             fxUserChannelDTO.getDiscordChannelId() +
             "."
         );
@@ -78,7 +80,7 @@ public class FXChannelController {
             return FXApiResponse.success(null);
         }
         return FXApiResponse.failure(
-            "Unable to find and delete channel with id " +
+            "Unable to delete channel with id " +
             fxUserChannelDTO.getDiscordChannelId() +
             "."
         );

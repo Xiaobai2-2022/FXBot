@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class MyUuidGenerator implements IdentifierGenerator {
+public class UuidGenerator implements IdentifierGenerator {
 
     @Override
     public String nextUUID(Object entity) {

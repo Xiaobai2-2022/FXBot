@@ -1,0 +1,16 @@
+package com.fangxia.fxbot.vo;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class FXUserVO {
+
+    private String userId;
+
+    private Long discordId;
+
+    private String displayName;
+
+}

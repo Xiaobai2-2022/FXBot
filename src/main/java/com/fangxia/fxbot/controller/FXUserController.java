@@ -41,7 +41,7 @@ public class FXUserController {
     @FXValidateKey
     public FXApiResponse<?> createUser(@RequestBody FXUserEO fxUserEO) {
         fxIUserService.save(fxUserEO);
-        return FXApiResponse.success("User has been created.");
+        return FXApiResponse.success("User successfully created.");
     }
 
     @PutMapping("/update")
@@ -49,7 +49,7 @@ public class FXUserController {
     @FXValidateKey
     public FXApiResponse<?> updateUser(@RequestBody FXUserEO fxUserEO) {
         if(fxIUserService.updateUser(fxUserEO) > 0) {
-            return FXApiResponse.success("User has been updated.");
+            return FXApiResponse.success("User successfully updated.");
         }
         return FXApiResponse.failure("Unable to find user with discord id " + fxUserEO.getDiscordId() + ".");
     }
@@ -59,7 +59,7 @@ public class FXUserController {
     @FXValidateKey
     public FXApiResponse<?> deleteUser(@PathVariable Long discordId) {
         if(fxIUserService.deleteUserByDiscordId(discordId) > 0) {
-            return FXApiResponse.success("User has been deleted.");
+            return FXApiResponse.success("User successfully deleted.");
         }
         return FXApiResponse.failure("Unable to find user with discord id " + discordId + ".");
     }

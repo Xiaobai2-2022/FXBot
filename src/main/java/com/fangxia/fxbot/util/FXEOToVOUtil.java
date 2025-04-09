@@ -1,7 +1,9 @@
 package com.fangxia.fxbot.util;
 
+import com.fangxia.fxbot.eo.FXChannelEO;
 import com.fangxia.fxbot.eo.FXServerEO;
 import com.fangxia.fxbot.eo.FXUserEO;
+import com.fangxia.fxbot.vo.FXChannelVO;
 import com.fangxia.fxbot.vo.FXServerVO;
 import com.fangxia.fxbot.vo.FXUserVO;
 
@@ -36,6 +38,19 @@ public class FXEOToVOUtil {
                 .build();
     }
 
+    public static FXChannelVO toVO(FXChannelEO fxChannelEO) {
+        if (fxChannelEO == null) {
+            return null;
+        }
+        return FXChannelVO.builder()
+                .channelId(fxChannelEO.getChannelId())
+                .discordChannelId(fxChannelEO.getDiscordChannelId())
+                .ownerId(fxChannelEO.getOwnerId())
+                .serverId(fxChannelEO.getServerId())
+                .displayName(fxChannelEO.getDisplayName())
+                .build();
+    }
+
     public static List<FXUserVO> toUserVOList(List<FXUserEO> fxUserEOList) {
         if (CollectionUtils.isEmpty(fxUserEOList)) {
             return List.of();
@@ -51,6 +66,16 @@ public class FXEOToVOUtil {
             return List.of();
         }
         return fxServerEOList.stream()
+                .filter(Objects::nonNull)
+                .map(FXEOToVOUtil::toVO)
+                .collect(Collectors.toList());
+    }
+
+    public static List<FXChannelVO> toChannelVOList(List<FXChannelEO> fxChannelEOList) {
+        if (CollectionUtils.isEmpty(fxChannelEOList)) {
+            return List.of();
+        }
+        return fxChannelEOList.stream()
                 .filter(Objects::nonNull)
                 .map(FXEOToVOUtil::toVO)
                 .collect(Collectors.toList());

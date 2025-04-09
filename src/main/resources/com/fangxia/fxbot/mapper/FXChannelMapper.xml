@@ -15,8 +15,8 @@
     </select>
 
     <insert id="insertChannel" parameterType="com.fangxia.fxbot.dto.FXUserChannelDTO">
-        INSERT INTO fx_channels (channel_id, discord_channel_id, owner_id, server_id, display_name, is_active)
-        SELECT UUID(), #{discordChannelId}, user_id, server_id, #{channelDisplayName}, true
+        INSERT INTO fx_channels (channel_id, discord_channel_id, owner_id, server_id, display_name)
+        SELECT UUID(), #{discordChannelId}, user_id, server_id, #{channelDisplayName}
         FROM fx_users fxuser, fx_servers fxserver
         WHERE fxuser.discord_id = #{discordUserId}
             AND fxserver.discord_server_id = #{discordServerId}

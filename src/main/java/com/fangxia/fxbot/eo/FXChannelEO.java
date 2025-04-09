@@ -34,10 +34,6 @@ public class FXChannelEO {
     @TableField("display_name")
     private String displayName;
 
-    @Schema(description = "Channel Activation Status")
-    @TableField("is_active")
-    private Boolean isActive;
-
     @Schema(description = "Timestamp at creation")
     @TableField("create_time")
     private LocalDateTime createTime;

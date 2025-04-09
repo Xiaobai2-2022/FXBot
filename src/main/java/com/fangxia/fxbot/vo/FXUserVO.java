@@ -3,8 +3,8 @@ package com.fangxia.fxbot.vo;
 import lombok.Builder;
 import lombok.Data;
 
-@Data
 @Builder
+@Data
 public class FXUserVO {
 
     private String userId;

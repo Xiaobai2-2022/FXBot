@@ -33,7 +33,7 @@ public class FXUserController {
     @Operation(summary = "Returns all users")
     @FXValidateKey
     public FXApiResponse<?> getAllUsers() {
-        return FXApiResponse.success(FXEOToVOUtil.toVOList(fxIUserService.list()));
+        return FXApiResponse.success(FXEOToVOUtil.toUserVOList(fxIUserService.list()));
     }
 
     @PostMapping("/create")

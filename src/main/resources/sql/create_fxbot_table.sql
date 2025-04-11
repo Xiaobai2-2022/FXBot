@@ -27,7 +27,6 @@ CREATE TABLE fx_channels (
     owner_id CHAR(36) NOT NULL,
     server_id CHAR(36) NOT NULL,
     display_name VARCHAR(255) NOT NULL,
-    is_active BOOLEAN NOT NULL,
 
     create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -45,15 +44,17 @@ CREATE TABLE fx_discord_permissions (
     update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE fx_server_roles (
+CREATE TABLE fx_roles (
     role_id CHAR(36) PRIMARY KEY,
     server_id CHAR(36) NOT NULL,
     role_name VARCHAR(255) NOT NULL,
+    manager_id CHAR(36) NOT NULL,
 
     create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     UNIQUE (server_id, role_name),
+    FOREIGN KEY (manager_id) REFERENCES fx_users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (server_id) REFERENCES fx_servers(server_id) ON DELETE CASCADE
 );
 
@@ -65,7 +66,7 @@ CREATE TABLE fx_role_permissions (
     update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     PRIMARY KEY (role_id, permission_id),
-    FOREIGN KEY (role_id) REFERENCES fx_server_roles(role_id) ON DELETE CASCADE,
+    FOREIGN KEY (role_id) REFERENCES fx_roles(role_id) ON DELETE CASCADE,
     FOREIGN KEY (permission_id) REFERENCES fx_discord_permissions(permission_id) ON DELETE CASCADE
 );
 

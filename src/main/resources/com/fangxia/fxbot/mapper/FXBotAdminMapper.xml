@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fangxia.fxbot.mapper.FXBotAdminMapper">
+
+    <select id="isBotAdmin" parameterType="Long" resultType="Boolean">
+        SELECT EXISTS (
+            SELECT 1 FROM fx_bot_admins
+            WHERE user_id = (
+                SELECT user_id FROM fx_users
+                WHERE discord_id = #{discordUserId}
+            )
+        )
+    </select>
+
+</mapper>

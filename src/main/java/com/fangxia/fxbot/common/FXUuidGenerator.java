@@ -1,4 +1,4 @@
-package com.fangxia.fxbot.config;
+package com.fangxia.fxbot.common;
 
 import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
 import org.springframework.stereotype.Component;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.UUID;
 
 @Component
-public class UuidGenerator implements IdentifierGenerator {
+public class FXUuidGenerator implements IdentifierGenerator {
 
     @Override
     public String nextUUID(Object entity) {

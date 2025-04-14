@@ -50,5 +50,7 @@ VALUES
     ('use_external_sounds',        0x0000200000000000, 'Use External Sounds'),
     ('send_voice_messages',        0x0000400000000000, 'Send Voice Messages'),
     ('send_polls',                 0x0002000000000000, 'Send Polls'),
-    ('use_external_apps',          0x0004000000000000, 'Use External Apps')
-AS new ON DUPLICATE KEY UPDATE permission_description = new.permission_description;
+    ('use_external_apps',          0x0004000000000000, 'Use External Apps'),
+    ('create_fxbot_role',          0x2000000000000000, 'Create FXBot Roles'),
+    ('forbidden',                  0x4000000000000000, 'User Forbids to Use this Bot')
+ON DUPLICATE KEY UPDATE permission_description = VALUES(permission_description);

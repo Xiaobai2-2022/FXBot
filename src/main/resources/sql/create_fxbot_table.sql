@@ -81,7 +81,7 @@ CREATE TABLE fx_user_roles (
     PRIMARY KEY (user_id, server_id, role_id),
     FOREIGN KEY (user_id) REFERENCES fx_users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (server_id) REFERENCES fx_servers(server_id) ON DELETE CASCADE,
-    FOREIGN KEY (role_id) REFERENCES fx_server_roles(role_id) ON DELETE CASCADE
+    FOREIGN KEY (role_id) REFERENCES fx_roles(role_id) ON DELETE CASCADE
 );
 
 CREATE TABLE fx_bot_admins (

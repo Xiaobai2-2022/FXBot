@@ -6,7 +6,7 @@ VALUES
 ON DUPLICATE KEY UPDATE
     display_name = VALUES(display_name);
 
-INSERT INTO fx_bot_admins( user_id, identity )
+INSERT INTO fx_bot_admins (user_id, identity)
 VALUES
     ('1', 'Owner of FXBot - Xiaobai2')
 ON DUPLICATE KEY UPDATE
